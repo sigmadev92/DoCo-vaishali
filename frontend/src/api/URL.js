@@ -1,6 +1,6 @@
 // api/URL.js
 
-const baseUrl = "http://localhost:1234";
+const baseUrl = "https://do-co-vaishali-back.vercel.app/";
 const userUrl = `${baseUrl}/user`;
 const accountUrl = `${baseUrl}/account`;
 
