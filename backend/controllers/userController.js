@@ -18,14 +18,36 @@ export async function requestOtp(req, res) {
     const otp = generateOTP();
     const otpExpiration = Date.now() + 10 * 60 * 1000;
 
+    const already = await users.findOne({
+      $or: [{ email: email }, { phoneNumber: phoneNumber }],
+    });
+    if (already) {
+      console.log("THIS EMAIL OR CONTACT ALREADY PRESENT");
+      return res.send({
+        status: false,
+        message: "Email or Phone Number already registered",
+      });
+    }
+    console.log("New user");
     const newUser = await users({
       email: email,
-      tempOtp: otp,
-
       phoneNumber: phoneNumber,
+      tempOtp: otp,
     });
+    // await users.updateOne(
+    //   { email: email },
+    //   {
+    //     $set: {
+    //       email: email,
+    //       phoneNumber: phoneNumber,
+    //       tempOtp: otp,
+    //     },
+    //   },
+    //   { upsert: true }
+    // );
+    console.log("process");
     await newUser.save();
-    console.log("run here");
+
     await sendOtpEmail(email, otp);
     res.send({ status: true, message: "OTP sent to email." });
   } catch (error) {
@@ -36,7 +58,7 @@ export async function requestOtp(req, res) {
 
 // Verify OTP Controller
 export async function verifyOtp(req, res) {
-  console.log(`backend : user Controller : verify-Otp`);
+  console.log(`backend : user Controller : verify-Otp`, req.body);
   const { email, otp } = req.body;
   console.log(req.body);
   try {

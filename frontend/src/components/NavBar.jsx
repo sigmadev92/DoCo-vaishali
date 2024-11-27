@@ -13,15 +13,10 @@ import { userUrl } from "../api/URL";
 export default function NavBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [active, setActive] = useState("/");
+  const currentPath = window.location.pathname;
   const [showPinPrompt, setShowPinPrompt] = useState(false); // Pin prompt state
   const [nextPath, setNextPath] = useState(""); // Path after pin verification
   const user = useSelector((state) => state.user);
-
-  const handleNavigate = (path) => {
-    setActive(path);
-    navigate(path);
-  };
 
   const handleLogout = () => {
     const confirm = window.confirm("Do you want to Log out ?");
@@ -29,7 +24,6 @@ export default function NavBar() {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     dispatch(deleteAuth());
-    handleNavigate("/login");
   };
 
   const handleProfileClick = () => {
@@ -93,9 +87,9 @@ export default function NavBar() {
             <Link
               to="/"
               className={`text-2xl sm:text-3xl lg:text-4xl transition ease-in-out duration-500 ${
-                active === "/" ? "text-teal-200" : "hover:text-teal-200"
+                currentPath === "/" ? "text-teal-200" : "hover:text-teal-200"
               }`}
-              onClick={() => handleNavigate("/")}
+              onClick={() => navigate("/")}
             >
               <FaHome />
             </Link>
@@ -105,7 +99,7 @@ export default function NavBar() {
                 {/* Profile Icon */}
                 <button
                   className={`text-xl sm:text-2xl lg:text-3xl transition ease-in-out duration-500 ${
-                    active === "/ViewUserDetails"
+                    currentPath === "/ViewUserDetails"
                       ? "text-teal-200"
                       : "hover:text-teal-200"
                   }`}
@@ -117,7 +111,7 @@ export default function NavBar() {
                 {/* Logout Icon */}
                 <button
                   className={`text-2xl sm:text-3xl lg:text-4xl transition ease-in-out duration-500 ${
-                    active === "/login"
+                    currentPath === "/login"
                       ? "text-teal-200"
                       : "hover:text-teal-200"
                   }`}
@@ -131,9 +125,11 @@ export default function NavBar() {
               <Link
                 to="/login"
                 className={`text-2xl sm:text-3xl lg:text-4xl transition ease-in-out duration-500 ${
-                  active === "/login" ? "text-teal-200" : "hover:text-teal-200"
+                  currentPath === "/login"
+                    ? "text-teal-200"
+                    : "hover:text-teal-200"
                 }`}
-                onClick={() => handleNavigate("/login")}
+                onClick={() => navigate("/login")}
               >
                 <IoMdLogIn />
               </Link>
