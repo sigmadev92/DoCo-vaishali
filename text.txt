@@ -1,0 +1,13 @@
+"DOCO-BANK OVERVIEW"
+banking functionality 
+1. user -> register, login, forgot-password, edit-user-details, view-user-details, reset-password, reset-digital-pin, logout
+2. account -> view balance, withdraw, deposit, transfer, trasaction history, 
+
+Authentication and authorization - (nodemailer) email and otp generation -> jwt, bcrypt,
+
+--> Schema
+1. User details -> name, email, phone Number, Account Number, Balance 
+2. Transaction record -> debit and credit in each accounts  
+
+----------------------------------------------------------------------------------
+Deployement Steps!

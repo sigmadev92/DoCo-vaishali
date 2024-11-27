@@ -1,0 +1,23 @@
+-> frontend -> 
+react and react-redux toolkit
+1. npx create-react-app . (dot for current folder)
+2. tailwind css - 
+    npm install -D tailwindcss
+    npx tailwindcss init
+3. redux and toolkit
+    npm i react-redux
+    npm i @reduxjs/toolkit
+4.  folder structure -> created folder - pages, components, api, redux/slices 
+
+
+-------------------------------------------------------------------
+
+screen size -> 
+
+Breakpoint	Minimum width	        CSS
+sm	        640px	        (min-width: 640px)
+md	        768px	        (min-width: 768px) 
+lg	        1024px	        (min-width: 1024px) 
+xl	        1280px	        (min-width: 1280px)
+2xl	        1536px          (min-width: 1536px)
+
