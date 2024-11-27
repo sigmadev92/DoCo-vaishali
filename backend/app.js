@@ -21,6 +21,7 @@ app.use(
     origin: [
       "http://localhost:3000", // For local testing
       process.env.FRONTEND_URL, // Deployed frontend
+      "https://do-co-vaishali.vercel.app",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
     credentials: true, // Allow cookies if needed
